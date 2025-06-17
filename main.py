@@ -1,28 +1,20 @@
-print("Ahoj! Jak se jmenuješ?")
-jmeno = input()
- 
-print("Kolik vrstev má mít tvůj dort?")
-vrstvy = int(input())
- 
-print("Kolik různých příchutí chceš použít?")
-pocet_prichuti = int(input())
- 
-prichute = []
-i = 0
-while i < pocet_prichuti:
-    print("Zadej příchuť číslo", i + 1)
-    p = input()
-    prichute.append(p)
-    i = i + 1
+with open ("textkparsovani.txt","r", encoding="utf-8") as soubor:
+    text = soubor.read()
+    print(text)
 
-i = 0
-while i < vrstvy:
-    print("Vrstva", i + 1, ":", prichute[i % pocet_prichuti])
-    i = i + 1
- 
 
-print(jmeno, "vytvořil dort s", vrstvy, "vrstvami a příchutěmi:", ", ".join(prichute))
- 
-print("Chceš dort ozdobit? (napiš ozdoby, odděluj čárkami)")
-ozdoby = input()
-print("Tvůj dort je ozdobený:", ozdoby)
+staryZnak1 = "("
+novyZnak1 = ""
+staryZnak2 = ")"
+novyZnak2 = ""
+
+for znak in text:
+    if znak == staryZnak1:
+        text = text.replace(staryZnak1, novyZnak1, 1)
+    elif znak == staryZnak2:
+        text = text.replace(staryZnak2, novyZnak2, 1)
+
+print(text)
+
+with open("hotovo.txt", "w", encoding="utf-8") as soubor:
+    soubor.write(text)
